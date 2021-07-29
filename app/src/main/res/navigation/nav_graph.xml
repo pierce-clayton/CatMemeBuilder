@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/memeBuilderFragment">
+
+    <fragment
+        android:id="@+id/memeBuilderFragment"
+        android:name="com.example.catmemebuilder.ui.fragments.MemeBuilderFragment"
+        android:label="fragment_meme_builder"
+        tools:layout="@layout/fragment_meme_builder" >
+        <action
+            android:id="@+id/action_memeBuilderFragment_to_memeDisplayFragment"
+            app:destination="@id/memeDisplayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memeDisplayFragment"
+        android:name="com.example.catmemebuilder.ui.fragments.MemeDisplayFragment"
+        android:label="fragment_meme_display"
+        tools:layout="@layout/fragment_meme_display" >
+        <action
+            android:id="@+id/action_memeDisplayFragment_to_memeBuilderFragment"
+            app:destination="@id/memeBuilderFragment" />
+    </fragment>
+</navigation>

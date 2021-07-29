@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/black"
+        android:id="@+id/black"/>
+    <item android:title="@string/yellow"
+        android:id="@+id/yellow"/>
+    <item android:title="@string/fuchsia"
+        android:id="@+id/fuchsia"/>
+    <item android:title="@string/red"
+        android:id="@+id/red"/>
+    <item android:title="@string/silver"
+        android:id="@+id/silver"/>
+    <item android:title="@string/gray"
+        android:id="@+id/gray"/>
+    <item android:title="@string/olive"
+        android:id="@+id/olive"/>
+    <item android:title="@string/purple"
+        android:id="@+id/purple"/>
+    <item android:title="@string/maroon"
+        android:id="@+id/maroon"/>
+    <item android:title="@string/aqua"
+        android:id="@+id/aqua"/>
+    <item android:title="@string/lime"
+        android:id="@+id/lime"/>
+    <item android:title="@string/teal"
+        android:id="@+id/teal"/>
+    <item android:title="@string/green"
+        android:id="@+id/green"/>
+    <item android:title="@string/blue"
+        android:id="@+id/blue"/>
+    <item android:title="@string/navy"
+        android:id="@+id/navy"/>
+    <item android:title="@string/white"
+        android:id="@+id/white"/>
+</menu>
