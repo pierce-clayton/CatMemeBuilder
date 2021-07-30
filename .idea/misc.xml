@@ -8,6 +8,8 @@
         <entry key="app/src/main/res/layout/fragment_meme_builder.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_meme_display.xml" value="0.12590579710144928" />
         <entry key="app/src/main/res/menu/color_select_menu.xml" value="0.153125" />
+        <entry key="app/src/main/res/menu/filter_select_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/pic_type_menu.xml" value="0.10833333333333334" />
         <entry key="app/src/main/res/menu/text_size_menu.xml" value="0.153125" />
       </map>
     </option>

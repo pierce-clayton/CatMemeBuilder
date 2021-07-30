@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/blur" />
+    <item android:title="@string/mono" />
+    <item android:title="@string/sepia" />
+    <item android:title="@string/negative" />
+    <item android:title="@string/paint" />
+    <item android:title="@string/pixel" />
+</menu>

@@ -18,4 +18,24 @@
         <item>@string/teal</item>
         <item>@string/yellow</item>
     </string-array>
+    
+    <string-array name="text_size">
+        <item>@string/_50</item>
+        <item>@string/_60</item>
+        <item>@string/_70</item>
+        <item>@string/_80</item>
+        <item>@string/_90</item>
+        <item>@string/_100</item>
+        <item>@string/_120</item>
+    </string-array>
+    
+    <string-array name="filters">
+        <item>@string/blur</item>
+        <item>@string/mono</item>
+        <item>@string/sepia</item>
+        <item>@string/negative</item>
+        <item>@string/paint</item>
+        <item>@string/pixel</item>
+    </string-array>
+
 </resources>

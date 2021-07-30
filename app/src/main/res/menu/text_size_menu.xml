@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/_12" />
-    <item android:title="@string/_16" />
-    <item android:title="@string/_20" />
-    <item android:title="@string/_24" />
-    <item android:title="@string/_28" />
-    <item android:title="@string/_32" />
-    <item android:title="@string/_36" />
+    <item android:title="@string/_50" />
+    <item android:title="@string/_60" />
+    <item android:title="@string/_70" />
+    <item android:title="@string/_80" />
+    <item android:title="@string/_90" />
+    <item android:title="@string/_100" />
+    <item android:title="@string/_120" />
 </menu>

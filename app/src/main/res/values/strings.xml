@@ -6,13 +6,13 @@
     <string name="filter_type">Filter Type</string>
     <string name="choose_gif_or_image">Choose Gif or Image</string>
     <string name="create">Create</string>
-    <string name="_12">12</string>
-    <string name="_16">16</string>
-    <string name="_20">20</string>
-    <string name="_24">24</string>
-    <string name="_28">28</string>
-    <string name="_32">32</string>
-    <string name="_36">36</string>
+    <string name="_50">50</string>
+    <string name="_60">60</string>
+    <string name="_70">70</string>
+    <string name="_80">80</string>
+    <string name="_90">90</string>
+    <string name="_100">100</string>
+    <string name="_120">120</string>
     <string name="black">Black</string>
     <string name="yellow">Yellow</string>
     <string name="fuchsia">Fuchsia</string>
@@ -29,4 +29,13 @@
     <string name="navy">Navy</string>
     <string name="blue">Blue</string>
     <string name="white">White</string>
+    <string name="blur">Blur</string>
+    <string name="mono">Mono</string>
+    <string name="sepia">Sepia</string>
+    <string name="negative">Negative</string>
+    <string name="paint">Paint</string>
+    <string name="pixel">Pixel</string>
+    <string name="gif">Gif</string>
+    <string name="image">Image</string>
+    <string name="gif_rb">Gif</string>
 </resources>
