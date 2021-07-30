@@ -1,5 +1,6 @@
 package com.example.catmemebuilder.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,24 +17,52 @@ class MainViewModel : ViewModel(){
     val response: LiveData<Resource<CataasResponse>> get() = _response
 
     private val _enteredText = MutableLiveData<String>()
-    val enteredText: LiveData<String> get() = _enteredText
+    private val enteredText: LiveData<String> get() = _enteredText
 
     private val _selectedTextSize = MutableLiveData<String>()
-    val selectedTextSize: LiveData<String> get() = _selectedTextSize
+    private val selectedTextSize: LiveData<String> get() = _selectedTextSize
 
     private val _selectedColor = MutableLiveData<String>()
-    val selectedColor: LiveData<String> get() = _selectedColor
+    private val selectedColor: LiveData<String> get() = _selectedColor
 
     private val _selectedFilter = MutableLiveData<String>()
-    val selectedFilter: LiveData<String> get() = _selectedFilter
+    private val selectedFilter: LiveData<String> get() = _selectedFilter
 
     private val _isGif = MutableLiveData<Boolean>()
-    val isGif: LiveData<Boolean> get() = _isGif
+    private val isGif: LiveData<Boolean> get() = _isGif
 
-    fun getImage(){
+    private val _catUrl = MutableLiveData<String>()
+    val catUrl: LiveData<String> get() = _catUrl
+
+    private fun getImage(){
         _response.value = Resource.Loading
         viewModelScope.launch(Dispatchers.IO) {
-            val response = CataasRepository.getImage()
+            val response = CataasRepository.getImage(selectedFilter.value ?: "")
+            _response.postValue(response)
+        }
+    }
+    private fun getGif(){
+        _response.value = Resource.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = CataasRepository.getGif(selectedFilter.value ?: "")
+            _response.postValue(response)
+        }
+    }
+    private fun getTextImage(){
+        _response.value = Resource.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = CataasRepository.getTextImage(enteredText.value ?: "",
+                selectedColor.value ?: "", selectedTextSize.value ?: "",
+                selectedFilter.value ?: "")
+            _response.postValue(response)
+        }
+    }
+    private fun getTextGif(){
+        _response.value = Resource.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = CataasRepository.getTextGif(enteredText.value ?: "",
+                selectedColor.value ?: "", selectedTextSize.value ?: "",
+                selectedFilter.value ?: "")
             _response.postValue(response)
         }
     }
@@ -44,7 +73,7 @@ class MainViewModel : ViewModel(){
         _selectedColor.value = color.lowercase()
     }
     fun updateFilter(filter: String){
-        _selectedFilter.value = filter
+        _selectedFilter.value = filter.lowercase()
     }
     fun updateTextSize(size: String){
         _selectedTextSize.value = size
@@ -52,7 +81,22 @@ class MainViewModel : ViewModel(){
     fun isGif(checked: Boolean){
         _isGif.value = checked
     }
+    fun updateUrl(url: String){
+        _catUrl.value = url
+    }
     fun createMeme(){
-        /* no-op */
+        if(isGif.value == true){
+            if(enteredText.value.isNullOrBlank()){
+                getGif()
+            }else{
+                getTextGif()
+            }
+        }else{
+            if(enteredText.value.isNullOrBlank()){
+                getImage()
+            }else{
+                getTextImage()
+            }
+        }
     }
 }

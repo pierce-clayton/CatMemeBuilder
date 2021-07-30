@@ -11,10 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.catmemebuilder.R
 import com.example.catmemebuilder.databinding.FragmentMemeBuilderBinding
 import com.example.catmemebuilder.ui.viewmodels.MainViewModel
+import com.example.catmemebuilder.utils.Resource
 
 
 class MemeBuilderFragment : Fragment() {
@@ -87,6 +89,23 @@ class MemeBuilderFragment : Fragment() {
                     viewModel.updateText(text.toString())
                 }
             })
+            viewModel.response.observe(viewLifecycleOwner){
+                progressBar.isVisible = it is Resource.Loading
+                when(it){
+                    is Resource.Loading -> {
+                        progressBar.isVisible = true
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(requireContext(), it.errorMsg, Toast.LENGTH_LONG).show()
+                    }
+                    is Resource.Success -> {
+                        viewModel.updateUrl(it.data.url)
+                    }
+                }
+            }
+            viewModel.catUrl.observe(viewLifecycleOwner){
+                Log.d("derp", it)
+            }
             createMemeBtn.setOnClickListener {
                 viewModel.createMeme()
             }
