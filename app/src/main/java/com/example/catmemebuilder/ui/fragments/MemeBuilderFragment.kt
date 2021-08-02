@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.example.catmemebuilder.R
 import com.example.catmemebuilder.databinding.FragmentMemeBuilderBinding
 import com.example.catmemebuilder.ui.viewmodels.MainViewModel
@@ -23,7 +25,7 @@ class MemeBuilderFragment : Fragment() {
     private var _binding: FragmentMemeBuilderBinding? = null
     private val binding get() = _binding!!
 
-    private var viewModel = MainViewModel()
+    private val viewModel: MainViewModel by activityViewModels()
 
     private var colors: Array<String>? = null
     private var colorMenuAdapter: ArrayAdapter<String>? = null
@@ -48,15 +50,20 @@ class MemeBuilderFragment : Fragment() {
         )
     }
 
+    override fun onResume() {
+        super.onResume()
+        with(binding){
+            (colorSelectMenu.editText as? AutoCompleteTextView)?.setAdapter(colorMenuAdapter)
+            (textSizeMenu.editText as? AutoCompleteTextView)?.setAdapter(textSizeMenuAdapter)
+            (filterTypeMenu.editText as? AutoCompleteTextView)?.setAdapter(filterMenuAdapter)
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMemeBuilderBinding.inflate(inflater, container, false)
         with(binding){
-            (colorSelectMenu.editText as? AutoCompleteTextView)?.setAdapter(colorMenuAdapter)
-            (textSizeMenu.editText as? AutoCompleteTextView)?.setAdapter(textSizeMenuAdapter)
-            (filterTypeMenu.editText as? AutoCompleteTextView)?.setAdapter(filterMenuAdapter)
             gifOrImageMenu.setOnCheckedChangeListener { _, isChecked ->
                 viewModel.isGif(isChecked)
             }
@@ -74,7 +81,6 @@ class MemeBuilderFragment : Fragment() {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     /* no-op */
                 }
-
                 override fun onTextChanged(
                     text: CharSequence?,
                     start: Int,
@@ -84,32 +90,40 @@ class MemeBuilderFragment : Fragment() {
                     textSizeMenu.isVisible = !text.isNullOrEmpty()
                     colorSelectMenu.isVisible = !text.isNullOrEmpty()
                 }
-
                 override fun afterTextChanged(text: Editable?) {
                     viewModel.updateText(text.toString())
                 }
             })
             viewModel.response.observe(viewLifecycleOwner){
                 progressBar.isVisible = it is Resource.Loading
-                when(it){
-                    is Resource.Loading -> {
-                        progressBar.isVisible = true
-                    }
-                    is Resource.Error -> {
-                        Toast.makeText(requireContext(), it.errorMsg, Toast.LENGTH_LONG).show()
-                    }
-                    is Resource.Success -> {
-                        viewModel.updateUrl(it.data.url)
+                if(viewModel.gotCat.value == true){
+                    when (it) {
+                        is Resource.Loading -> {
+                            progressBar.isVisible = true
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), it.errorMsg, Toast.LENGTH_LONG).show()
+                        }
+                        is Resource.Success -> {
+                            viewModel.updateUrl(it.data.url)
+                        }
                     }
                 }
             }
             viewModel.catUrl.observe(viewLifecycleOwner){
-                Log.d("derp", it)
+                if(viewModel.gotCat.value == true){
+                    view?.findNavController()?.navigate(MemeBuilderFragmentDirections.actionMemeBuilderFragmentToMemeDisplayFragment())
+                }
             }
             createMemeBtn.setOnClickListener {
                 viewModel.createMeme()
             }
         }
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

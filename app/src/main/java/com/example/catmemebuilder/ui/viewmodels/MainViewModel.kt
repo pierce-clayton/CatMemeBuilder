@@ -29,10 +29,13 @@ class MainViewModel : ViewModel(){
     private val selectedFilter: LiveData<String> get() = _selectedFilter
 
     private val _isGif = MutableLiveData<Boolean>()
-    private val isGif: LiveData<Boolean> get() = _isGif
+    val isGif: LiveData<Boolean> get() = _isGif
 
     private val _catUrl = MutableLiveData<String>()
     val catUrl: LiveData<String> get() = _catUrl
+
+    private val _gotCat = MutableLiveData(false)
+    val gotCat: LiveData<Boolean> get() = _gotCat
 
     private fun getImage(){
         _response.value = Resource.Loading
@@ -84,6 +87,9 @@ class MainViewModel : ViewModel(){
     fun updateUrl(url: String){
         _catUrl.value = url
     }
+    fun gotCat(cat : Boolean){
+        _gotCat.value = cat
+    }
     fun createMeme(){
         if(isGif.value == true){
             if(enteredText.value.isNullOrBlank()){
@@ -98,5 +104,6 @@ class MainViewModel : ViewModel(){
                 getTextImage()
             }
         }
+        gotCat(true)
     }
 }

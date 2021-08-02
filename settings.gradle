@@ -9,6 +9,17 @@ pluginManagement {
         id 'com.android.library' version '7.1.0-alpha05'
         id 'org.jetbrains.kotlin.android' version '1.5.21'
         id "org.jetbrains.kotlin.kapt" version "1.5.21"
+        id "androidx.navigation.navigation-safe-args-gradle-plugin" version "2.3.5"
+        id "androidx.navigation.safeargs.kotlin" version "2.3.5"
+
+
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "androidx.navigation.safeargs.kotlin") {
+                useModule("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5")
+            }
+        }
     }
 }
 dependencyResolutionManagement {

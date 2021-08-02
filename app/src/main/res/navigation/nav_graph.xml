@@ -9,7 +9,8 @@
         android:id="@+id/memeBuilderFragment"
         android:name="com.example.catmemebuilder.ui.fragments.MemeBuilderFragment"
         android:label="fragment_meme_builder"
-        tools:layout="@layout/fragment_meme_builder" >
+        tools:layout="@layout/fragment_meme_builder"
+        >
         <action
             android:id="@+id/action_memeBuilderFragment_to_memeDisplayFragment"
             app:destination="@id/memeDisplayFragment" />
@@ -18,9 +19,5 @@
         android:id="@+id/memeDisplayFragment"
         android:name="com.example.catmemebuilder.ui.fragments.MemeDisplayFragment"
         android:label="fragment_meme_display"
-        tools:layout="@layout/fragment_meme_display" >
-        <action
-            android:id="@+id/action_memeDisplayFragment_to_memeBuilderFragment"
-            app:destination="@id/memeBuilderFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_meme_display" />
 </navigation>

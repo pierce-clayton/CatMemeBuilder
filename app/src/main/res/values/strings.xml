@@ -38,4 +38,6 @@
     <string name="gif">Gif</string>
     <string name="image">Image</string>
     <string name="gif_rb">Gif</string>
+    <string name="none"> </string>
+    <string name="share_cat">Share Cat</string>
 </resources>
