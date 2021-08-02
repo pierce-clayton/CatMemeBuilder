@@ -31,7 +31,7 @@ class MemeDisplayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.catUrl.observe(viewLifecycleOwner){
-            if(viewModel.isGif.value == true){
+            if(viewModel.isGif){
                 Glide.with(view).asGif().load(FINAL_URL + it).into(binding.memeIv)
                 shareIntent = Intent().apply {
                     action = Intent.ACTION_SEND

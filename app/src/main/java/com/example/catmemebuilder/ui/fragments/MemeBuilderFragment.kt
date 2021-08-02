@@ -96,7 +96,7 @@ class MemeBuilderFragment : Fragment() {
             })
             viewModel.response.observe(viewLifecycleOwner){
                 progressBar.isVisible = it is Resource.Loading
-                if(viewModel.gotCat.value == true){
+                if(viewModel.gotCat){
                     when (it) {
                         is Resource.Loading -> {
                             progressBar.isVisible = true
@@ -111,7 +111,7 @@ class MemeBuilderFragment : Fragment() {
                 }
             }
             viewModel.catUrl.observe(viewLifecycleOwner){
-                if(viewModel.gotCat.value == true){
+                if(viewModel.gotCat){
                     view?.findNavController()?.navigate(MemeBuilderFragmentDirections.actionMemeBuilderFragmentToMemeDisplayFragment())
                 }
             }
