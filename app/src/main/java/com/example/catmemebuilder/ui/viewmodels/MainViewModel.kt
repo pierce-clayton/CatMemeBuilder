@@ -1,11 +1,9 @@
 package com.example.catmemebuilder.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.catmemebuilder.data.remote.CataasManager.getImage
 import com.example.catmemebuilder.data.remote.models.CataasResponse
 import com.example.catmemebuilder.data.remote.repository.CataasRepository
 import com.example.catmemebuilder.utils.Resource
@@ -86,13 +84,13 @@ class MainViewModel : ViewModel(){
     }
     fun createMeme(){
         if(isGif){
-            if(enteredText.isNullOrBlank()){
+            if(enteredText.isBlank()){
                 getGif()
             }else{
                 getTextGif()
             }
         }else{
-            if(enteredText.isNullOrBlank()){
+            if(enteredText.isBlank()){
                 getImage()
             }else{
                 getTextImage()

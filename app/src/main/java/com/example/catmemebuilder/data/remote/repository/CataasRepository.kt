@@ -1,7 +1,6 @@
 package com.example.catmemebuilder.data.remote.repository
 
 import com.example.catmemebuilder.data.remote.CataasManager
-import com.example.catmemebuilder.data.remote.api.CataasService
 import com.example.catmemebuilder.data.remote.models.CataasResponse
 import com.example.catmemebuilder.utils.Resource
 
